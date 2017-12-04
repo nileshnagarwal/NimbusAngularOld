@@ -17,6 +17,9 @@ const routes: Routes = [{
     path: 'components',
     loadChildren: './components/components.module#ComponentsModule',
   }, {
+    path: 'masters',
+    loadChildren: './masters/masters.module#MastersModule',
+  },  {
     path: 'maps',
     loadChildren: './maps/maps.module#MapsModule',
   }, {
