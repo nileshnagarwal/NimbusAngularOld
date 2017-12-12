@@ -6,7 +6,7 @@
   <nb-card-body>
       <form 
         #vehicleBodyForm="ngForm"
-        (ngSubmit)="submit(vehicleBodyForm)">
+        (ngSubmit)="addVehicleBody(vehicleBodyForm)">
           <!-- Creating Div with label and input field -->
           <div class="form-group row">
             <label 
@@ -18,7 +18,7 @@
               <input 
                 required 
                 ngModel 
-                name="vehicleBody"
+                name="body"
                 class="form-control" 
                 id="vehicleBody" 
                 #vehicleBody=ngModel

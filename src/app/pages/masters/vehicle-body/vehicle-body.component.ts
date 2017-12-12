@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { LocalDataSource } from 'ng2-smart-table';
+import { Component, OnInit } from '@angular/core';
+import { VehicleBodyService } from './../../../services/masters/vehicle-body.service';
+import {NgForm} from '@angular/forms';
 
-import { SmartTableService } from '../../../@core/data/smart-table.service';
 
 @Component({
   selector: 'ngx-vehicle-body',
@@ -14,6 +14,12 @@ import { SmartTableService } from '../../../@core/data/smart-table.service';
 })
 export class VehicleBodyComponent {
 
-  constructor(){};
-  
+  constructor(private service: VehicleBodyService){};
+
+  addVehicleBody(vehicleBodyForm: NgForm){
+
+    this.service.addVehicleBody(vehicleBodyForm.value)
+      .subscribe(response => {});
+    
+  }
 }
