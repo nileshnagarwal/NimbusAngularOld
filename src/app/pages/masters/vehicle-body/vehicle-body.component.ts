@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { VehicleBodyService } from './../../../services/masters/vehicle-body.service';
 import {NgForm} from '@angular/forms';
 

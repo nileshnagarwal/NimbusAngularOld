@@ -1,3 +1,4 @@
+import { VehicleTypeComponent } from './vehicle-type/vehicle-type.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -10,8 +11,17 @@ const routes: Routes = [{
   children: [{
     path: 'vehicle-body',
     component: VehicleBodyComponent,
+    }],
+  },{
+  path: '',
+  component: VehicleTypeComponent,
+  children: [{
+    path: 'vehicle-type',
+    component: VehicleTypeComponent,
   }],
-}];
+}]
+
+
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
@@ -22,4 +32,5 @@ export class MastersRoutingModule { }
 export const routedComponents = [
   MastersComponent,
   VehicleBodyComponent,
+  VehicleTypeComponent,
 ];
