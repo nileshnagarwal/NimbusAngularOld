@@ -11,41 +11,41 @@
         <!-- Vehicle Type Field -->
         <div class="form-group row">
           <label 
-            for="vehicleType" 
+            for="vehicle" 
             class="col-sm-3 col-form-label">
             Vehicle Type Name
           </label>
           <div class="col-sm-9">
-            <!-- We can use "vehicleType" in formControlName 
+            <!-- We can use "vehicle" in formControlName 
             instead of using the get function by defining
             the field as a property in the component class-->
             <input 
-              formControlName="vehicleType" 
-              name="vehicleType"
+              formControlName="vehicle" 
+              name="vehicle"
               class="form-control" 
-              id="vehicleType" 
+              id="vehicle" 
               placeholder="Vehicle Type Name">              
           </div>
         </div>
         
         <!-- Adding Validations for Vehicle Type Field -->
         <div
-          *ngIf="vehicleType.touched && !vehicleType.valid">
+          *ngIf="vehicle.touched && !vehicle.valid">
           <div 
             class="offset-sm-3 col-sm-9 alert alert-danger"
-            *ngIf="vehicleType.errors.required">
+            *ngIf="vehicle.errors.required">
             Vehicle Type Name has not been entered.
           </div>
           <div 
             class="offset-sm-3 col-sm-9 alert alert-danger"
-            *ngIf="vehicleType.errors.maxlength">
-            Vehicle Type Name should not be greater than {{vehicleType.errors.maxlength.requiredLength}} 
-            characters. Currently it is {{vehicleType.errors.maxlength.actualLength}} characters.
+            *ngIf="vehicle.errors.maxlength">
+            Vehicle Type Name should not be greater than {{vehicle.errors.maxlength.requiredLength}} 
+            characters. Currently it is {{vehicle.errors.maxlength.actualLength}} characters.
           </div>
           <div 
             class="offset-sm-3 col-sm-9 alert alert-danger"
-            *ngIf="vehicleType.errors.minlength">
-            Vehicle Type Name should be greater than {{vehicleType.errors.minlength.requiredLength}} 
+            *ngIf="vehicle.errors.minlength">
+            Vehicle Type Name should be greater than {{vehicle.errors.minlength.requiredLength}} 
             characters.
           </div>
         </div>
@@ -65,8 +65,7 @@
                 name="length"
                 type="number"
                 class="form-control"                
-                placeholder="Length of Vehicle Loading Deck"
-                (keypress)="displayErrors(length)">
+                placeholder="Length of Vehicle Loading Deck">
             </div>
         </div>
         <div
@@ -154,7 +153,7 @@
             <label 
               for="weight" 
               class="col-sm-3 col-form-label">
-              Vehicle Payload Capacity
+              Vehicle Payload Capacity (Tons)
             </label>
             <div class="col-sm-9">
               <input 
@@ -176,7 +175,7 @@
           <div 
             class="offset-sm-3 col-sm-9 alert alert-danger"
             *ngIf="weight.errors.max">
-            Vehicle Payload Capacity should not be greater than {{heigth.errors.max.max}} 
+            Vehicle Payload Capacity should not be greater than {{weight.errors.max.max}} 
             feet.
           </div>          
         </div>

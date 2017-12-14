@@ -1,3 +1,4 @@
+import { VehicleTypeService } from './../../services/masters/vehicle-type.service';
 import { NgModule } from '@angular/core';
 import { ThemeModule } from '../../@theme/theme.module';
 import { MastersRoutingModule, routedComponents } from './masters-routing.module';
@@ -12,7 +13,8 @@ import { VehicleBodyService } from './../../services/masters/vehicle-body.servic
     ...routedComponents,
   ],
   providers: [
-    VehicleBodyService
+    VehicleBodyService,
+    VehicleTypeService
   ],
 })
 export class MastersModule { }

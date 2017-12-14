@@ -20,6 +20,6 @@ export class VehicleBodyComponent {
 
     this.service.addVehicleBody(vehicleBodyForm.value)
       .subscribe(response => {});
-    
+    vehicleBodyForm.reset();
   }
 }

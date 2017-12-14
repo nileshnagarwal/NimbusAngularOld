@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { VehicleTypeService } from './../../../services/masters/vehicle-type.service';
 
 @Component({
   selector: 'ngx-vehicle-type',
@@ -12,9 +13,11 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class VehicleTypeComponent {
 
+  constructor(private service: VehicleTypeService){};
+
   vehicleTypeForm = new FormGroup(
     {
-      vehicleType : new FormControl('',[
+      vehicle: new FormControl('',[
         Validators.required,
         Validators.maxLength(20),
         Validators.minLength(5),
@@ -38,11 +41,15 @@ export class VehicleTypeComponent {
     }
   )
 
-  addVehicleType(vehicleTypeForm){};
+  addVehicleType(vehicleTypeForm){
+    this.service.addVehicleType(vehicleTypeForm.value)
+      .subscribe(response => {});
+      vehicleTypeForm.reset();
+  };
 
-  get vehicleType()
+  get vehicle()
   {
-    return this.vehicleTypeForm.get('vehicleType');
+    return this.vehicleTypeForm.get('vehicle');
   }
 
   get length()
@@ -65,8 +72,5 @@ export class VehicleTypeComponent {
     return this.vehicleTypeForm.get('weight');
   }
 
-  displayErrors(length){
-    console.log(length.errors);
-  }
 
 }
