@@ -1,18 +1,18 @@
+import { VehicleBodyService } from './../../../services/masters/vehicle-body.service';
 import { Component } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 
-import { SmartTableService } from '../../../@core/data/smart-table.service';
 
 @Component({
-  selector: 'ngx-smart-table',
-  templateUrl: './smart-table.component.html',
+  selector: 'ngx-vehicle-body-report',
+  templateUrl: './vehicle-body-report.component.html',
   styles: [`
     nb-card {
       transform: translate3d(0, 0, 0);
     }
   `],
 })
-export class SmartTableComponent {
+export class VehicleBodyReportComponent {
 
   settings = {
     add: {
@@ -30,40 +30,25 @@ export class SmartTableComponent {
       confirmDelete: true,
     },
     columns: {
-      id: {
-        title: 'ID',
-        type: 'number',
-      },
-      firstName: {
-        title: 'First Name',
+      body: {
+        title: 'Vehicle Body',
         type: 'string',
-      },
-      lastName: {
-        title: 'Last Name',
-        type: 'string',
-      },
-      username: {
-        title: 'Username',
-        type: 'string',
-      },
-      email: {
-        title: 'E-mail',
-        type: 'string',
-      },
-      age: {
-        title: 'Age',
-        type: 'number',
       },
     },
   };
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private service: SmartTableService) {
-    const data = this.service.getData();
-    this.source.load(data);
-    console.log(data);
+  constructor(private service: VehicleBodyService) {
+    this.service.getVehicleBodyData()
+      .subscribe(response => {
+        this.source.load(response.json());
+        console.log(response.json());
+      });
+    
   }
+  
+
 
   onDeleteConfirm(event): void {
     if (window.confirm('Are you sure you want to delete?')) {

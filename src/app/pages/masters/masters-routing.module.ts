@@ -1,9 +1,10 @@
-import { VehicleTypeComponent } from './vehicle-type/vehicle-type.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { MastersComponent } from './masters.component';
 import { VehicleBodyComponent } from './vehicle-body/vehicle-body.component';
+import { VehicleBodyReportComponent } from './vehicle-body-report/vehicle-body-report.component';
+import { VehicleTypeComponent } from './vehicle-type/vehicle-type.component';
 
 const routes: Routes = [{
   path: '',
@@ -19,7 +20,14 @@ const routes: Routes = [{
     path: 'vehicle-type',
     component: VehicleTypeComponent,
   }],
-}]
+  },{
+  path: '',
+  component: VehicleBodyReportComponent,
+  children: [{
+    path: 'vehicle-body-report',
+    component: VehicleBodyReportComponent,
+    }],
+  }]
 
 
 
@@ -33,4 +41,5 @@ export const routedComponents = [
   MastersComponent,
   VehicleBodyComponent,
   VehicleTypeComponent,
+  VehicleBodyReportComponent
 ];

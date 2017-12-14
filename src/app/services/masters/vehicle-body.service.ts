@@ -21,4 +21,12 @@ export class VehicleBodyService {
     
   }
 
+  getVehicleBodyData(){
+    return this.http
+      .get(
+        this.url,
+        { headers: this.header }
+      );
+  }
+
 }
