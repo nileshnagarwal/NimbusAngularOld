@@ -1,3 +1,4 @@
+import { TransporterComponent } from './transporter/transporter.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -20,7 +21,14 @@ const routes: Routes = [{
     path: 'vehicle-type',
     component: VehicleTypeComponent,
   }],
-  }]
+  },{
+    path: '',
+    component: TransporterComponent,
+    children: [{
+      path: 'transporter',
+      component: TransporterComponent,
+    }],
+    }]
 
 
 
@@ -34,4 +42,5 @@ export const routedComponents = [
   MastersComponent,
   VehicleBodyComponent,
   VehicleTypeComponent,
+  TransporterComponent,
 ];

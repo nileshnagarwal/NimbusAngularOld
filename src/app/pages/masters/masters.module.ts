@@ -1,3 +1,4 @@
+import { TransporterService } from './../../services/masters/transporter.service';
 import { VehicleTypeService } from './../../services/masters/vehicle-type.service';
 import { NgModule } from '@angular/core';
 import { ThemeModule } from '../../@theme/theme.module';
@@ -16,7 +17,8 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
   ],
   providers: [
     VehicleBodyService,
-    VehicleTypeService
+    VehicleTypeService,
+    TransporterService,
   ],
 })
 export class MastersModule { }

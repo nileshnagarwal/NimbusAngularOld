@@ -24,6 +24,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'Vehicle Type',
         link: '/pages/masters/vehicle-type',
       },
+      {
+        title: 'Transporter',
+        link: '/pages/masters/transporter',
+      },
     ],
   },
   {
