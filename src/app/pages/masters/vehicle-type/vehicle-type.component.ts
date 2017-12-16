@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { VehicleTypeService } from './../../../services/masters/vehicle-type.service';
+import { VehicleTypeReportComponent } from './../vehicle-type-report/vehicle-type-report.component';
 
 @Component({
   selector: 'ngx-vehicle-type',
@@ -11,9 +12,16 @@ import { VehicleTypeService } from './../../../services/masters/vehicle-type.ser
     }
   `],
 })
-export class VehicleTypeComponent {
-
+export class VehicleTypeComponent implements OnInit {
+  
   constructor(private service: VehicleTypeService){};
+
+  ngOnInit() {
+    this.service.getVehicleType()
+    .subscribe(response => {
+      this.source.load(response.json());
+    });
+  }
 
   vehicleTypeForm = new FormGroup(
     {
@@ -43,9 +51,17 @@ export class VehicleTypeComponent {
 
   addVehicleType(vehicleTypeForm){
     this.service.addVehicleType(vehicleTypeForm.value)
-      .subscribe(response => {});
+      .subscribe(response => {
+        this.service.getVehicleType()
+        .subscribe(response => {
+          this.source.load(response.json());
+        });
+      });
       vehicleTypeForm.reset();
   };
+
+  //The following get functions are used to describe 
+  //properties which can be used for cleaner code in html file.
 
   get vehicle()
   {
@@ -72,5 +88,19 @@ export class VehicleTypeComponent {
     return this.vehicleTypeForm.get('weight');
   }
 
+  //The following section is for the reports section smart table
+  reportInstance : VehicleTypeReportComponent = new VehicleTypeReportComponent(this.service);
+  
+  source = this.reportInstance.getLocalDataSource();
 
+  settings = this.reportInstance.getSettings();
+
+  onDeleteConfirm(event): void {
+    this.reportInstance.onDeleteConfirm(event);
+  }
+
+  onAddConfirm(event): void {
+    this.reportInstance.onAddConfirm(event);
+  }
+ 
 }

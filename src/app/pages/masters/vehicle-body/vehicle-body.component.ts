@@ -18,7 +18,7 @@ export class VehicleBodyComponent {
   constructor(private service: VehicleBodyService){};
 
   ngOnInit() {
-    this.service.getVehicleBodyData()
+    this.service.getVehicleBody()
     .subscribe(response => {
       this.source.load(response.json());
     });
@@ -27,7 +27,7 @@ export class VehicleBodyComponent {
   addVehicleBody(vehicleBodyForm: NgForm){
     this.service.addVehicleBody(vehicleBodyForm.value)
       .subscribe(response => {
-        this.service.getVehicleBodyData()
+        this.service.getVehicleBody()
         .subscribe(response => {
           this.source.load(response.json());
         });    

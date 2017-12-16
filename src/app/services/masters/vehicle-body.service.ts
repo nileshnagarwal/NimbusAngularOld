@@ -21,7 +21,7 @@ export class VehicleBodyService {
     
   }
 
-  getVehicleBodyData(){
+  getVehicleBody(){
     return this.http
       .get(
         this.url,
@@ -29,7 +29,7 @@ export class VehicleBodyService {
       );
   }
 
-  deleteVehicleBodyData(data){
+  deleteVehicleBody(data){
     //We receive data object which is a part of the event object
     //passed by the event emitter of smart table. This data object
     //has the data of the field, out of which we can extract the

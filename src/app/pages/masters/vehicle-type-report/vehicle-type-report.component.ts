@@ -1,18 +1,17 @@
-import { VehicleBodyService } from './../../../services/masters/vehicle-body.service';
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
-
+import { VehicleTypeService } from './../../../services/masters/vehicle-type.service';
 
 @Component({
-  selector: 'ngx-vehicle-body-report',
-  templateUrl: './vehicle-body-report.component.html',
+  selector: 'ngx-vehicle-type-report',
+  templateUrl: './vehicle-type-report.component.html',
   styles: [`
     nb-card {
       transform: translate3d(0, 0, 0);
     }
   `],
 })
-export class VehicleBodyReportComponent implements OnInit {
+export class VehicleTypeReportComponent implements OnInit {
 
   settings = {
     add: {
@@ -31,19 +30,35 @@ export class VehicleBodyReportComponent implements OnInit {
       confirmDelete: true,
     },
     columns: {
-      body: {
-        title: 'Vehicle Body',
+      vehicle: {
+        title: 'Vehicle Type',
         type: 'string',
+      },    
+      length: {
+        title: 'Vehicle Length',
+        type: 'number',
+      },
+      width: {
+        title: 'Vehicle Width',
+        type: 'number',
+      },
+      height: {
+        title: 'Vehicle Height',
+        type: 'number',
+      },
+      weight: {
+        title: 'Payload Capacity',
+        type: 'number',
       },
     },
   };
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private service: VehicleBodyService) {}
+  constructor(private service: VehicleTypeService) {}
 
   ngOnInit() {
-    this.service.getVehicleBody()
+    this.service.getVehicleType()
     .subscribe(response => {
       this.source.load(response.json());
     });
@@ -53,7 +68,7 @@ export class VehicleBodyReportComponent implements OnInit {
     if (window.confirm('Are you sure you want to delete?')) {
       event.confirm.resolve();
       console.log(event);
-      this.service.deleteVehicleBody(event['data'])
+      this.service.deleteVehicleType(event['data'])
         .subscribe(response => {});
     } else {
       event.confirm.reject();
@@ -65,9 +80,9 @@ export class VehicleBodyReportComponent implements OnInit {
     // then call the service to add the data.
     if (window.confirm('Are you sure you want to add?')) {
       event.confirm.resolve();
-      this.service.addVehicleBody(event['newData'])
+      this.service.addVehicleType(event['newData'])
         .subscribe(response => {
-          this.service.getVehicleBody()
+          this.service.getVehicleType()
           .subscribe(response => {
             this.source.load(response.json());
           });
