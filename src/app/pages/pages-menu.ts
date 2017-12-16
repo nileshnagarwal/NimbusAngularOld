@@ -24,10 +24,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'Vehicle Type',
         link: '/pages/masters/vehicle-type',
       },
-      {
-        title: 'Vehicle Body Report',
-        link: '/pages/masters/vehicle-body-report',
-      },      
     ],
   },
   {

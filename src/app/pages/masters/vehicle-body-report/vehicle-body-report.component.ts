@@ -76,4 +76,13 @@ export class VehicleBodyReportComponent implements OnInit {
       event.confirm.reject();
     }
   }
+
+  getLocalDataSource(){
+    return this.source;
+  }
+
+  getSettings(){
+    return this.settings;
+  }
+  
 }

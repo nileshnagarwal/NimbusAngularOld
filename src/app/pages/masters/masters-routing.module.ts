@@ -20,13 +20,6 @@ const routes: Routes = [{
     path: 'vehicle-type',
     component: VehicleTypeComponent,
   }],
-  },{
-  path: '',
-  component: VehicleBodyReportComponent,
-  children: [{
-    path: 'vehicle-body-report',
-    component: VehicleBodyReportComponent,
-    }],
   }]
 
 
@@ -41,5 +34,4 @@ export const routedComponents = [
   MastersComponent,
   VehicleBodyComponent,
   VehicleTypeComponent,
-  VehicleBodyReportComponent
 ];
