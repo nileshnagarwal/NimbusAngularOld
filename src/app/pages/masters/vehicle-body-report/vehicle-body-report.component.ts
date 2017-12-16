@@ -1,5 +1,5 @@
 import { VehicleBodyService } from './../../../services/masters/vehicle-body.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 
 
@@ -12,13 +12,14 @@ import { LocalDataSource } from 'ng2-smart-table';
     }
   `],
 })
-export class VehicleBodyReportComponent {
+export class VehicleBodyReportComponent implements OnInit {
 
   settings = {
     add: {
       addButtonContent: '<i class="nb-plus"></i>',
       createButtonContent: '<i class="nb-checkmark"></i>',
       cancelButtonContent: '<i class="nb-close"></i>',
+      confirmCreate: true,
     },
     edit: {
       editButtonContent: '<i class="nb-edit"></i>',
@@ -39,20 +40,38 @@ export class VehicleBodyReportComponent {
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private service: VehicleBodyService) {
+  constructor(private service: VehicleBodyService) {}
+
+  ngOnInit() {
     this.service.getVehicleBodyData()
-      .subscribe(response => {
-        this.source.load(response.json());
-        console.log(response.json());
-      });
-    
+    .subscribe(response => {
+      this.source.load(response.json());
+    });
   }
   
-
-
   onDeleteConfirm(event): void {
     if (window.confirm('Are you sure you want to delete?')) {
       event.confirm.resolve();
+      console.log(event);
+      this.service.deleteVehicleBodyData(event['data'])
+        .subscribe(response => {});
+    } else {
+      event.confirm.reject();
+    }
+  }
+
+  onAddConfirm(event): void {
+    //Confirm if the user wants to add the data and 
+    // then call the service to add the data.
+    if (window.confirm('Are you sure you want to add?')) {
+      event.confirm.resolve();
+      this.service.addVehicleBody(event['newData'])
+        .subscribe(response => {
+          this.service.getVehicleBodyData()
+          .subscribe(response => {
+            this.source.load(response.json());
+          });
+        });
     } else {
       event.confirm.reject();
     }
