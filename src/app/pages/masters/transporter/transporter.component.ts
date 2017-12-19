@@ -13,8 +13,8 @@ import { TransporterService } from './../../../services/masters/transporter.serv
   `],
 })
 export class TransporterComponent implements OnInit {
-  
-  constructor(private service: TransporterService){};
+
+  constructor(private service: TransporterService) {}
 
   ngOnInit() {
     this.service.getTransporter()
@@ -25,42 +25,42 @@ export class TransporterComponent implements OnInit {
 
   transporterForm = new FormGroup(
     {
-      transporter: new FormControl('',[
+      transporter: new FormControl('', [
         Validators.required,
         Validators.maxLength(70),
         Validators.minLength(5),
       ]),
-      primary_mobile: new FormControl('',[
+      primary_mobile: new FormControl('', [
         Validators.required,
         Validators.max(9999999999),
       ]),
-      primary_contact: new FormControl('',[
+      primary_contact: new FormControl('', [
         Validators.maxLength(255),
       ]),
-      primary_person: new FormControl('',[
+      primary_person: new FormControl('', [
         Validators.maxLength(40),
       ]),
-      other_contact: new FormControl('',[
+      other_contact: new FormControl('', [
         Validators.maxLength(255),
       ]),
-      address: new FormControl('',[
+      address: new FormControl('', [
       ]),
-    }
-  )
+    },
+  );
 
-  addTransporter(transporterForm){
+  addTransporter(transporterForm) {
     this.service.addTransporter(transporterForm.value)
       .subscribe(response => {
         this.service.getTransporter()
-        .subscribe(response => {
-          this.source.load(response.json());
+        .subscribe(responseGet => {
+          this.source.load(responseGet.json());
         });
       });
       transporterForm.reset();
-  };
+  }
 
-  //The following get functions are used to describe 
-  //properties which can be used for cleaner code in html file.
+  // The following get functions are used to describe
+  // properties which can be used for cleaner code in html file.
 
   get transporter()
   {
@@ -87,9 +87,9 @@ export class TransporterComponent implements OnInit {
     return this.transporterForm.get('other_contact');
   }
 
-  //The following section is for the reports section smart table
-  reportInstance : TransporterReportComponent = new TransporterReportComponent(this.service);
-  
+  // The following section is for the reports section smart table
+  reportInstance: TransporterReportComponent = new TransporterReportComponent(this.service);
+
   source = this.reportInstance.getLocalDataSource();
 
   settings = this.reportInstance.getSettings();
@@ -99,9 +99,9 @@ export class TransporterComponent implements OnInit {
   }
 
 
-  //The following function is only for debugging validation errors
-  errorDisplay(transporterForm){
+  // The following function is only for debugging validation errors
+  errorDisplay(transporterForm) {
     console.log(transporterForm);
   }
- 
+
 }

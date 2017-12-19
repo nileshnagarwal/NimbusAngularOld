@@ -2,7 +2,7 @@ import { VehicleBodyReportComponent } from './../vehicle-body-report/vehicle-bod
 import { Component } from '@angular/core';
 import { VehicleBodyService } from './../../../services/masters/vehicle-body.service';
 import {NgForm} from '@angular/forms';
-import { LocalDataSource } from 'ng2-smart-table';
+import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
   selector: 'ngx-vehicle-body',
@@ -13,9 +13,9 @@ import { LocalDataSource } from 'ng2-smart-table';
     }
   `],
 })
-export class VehicleBodyComponent {
+export class VehicleBodyComponent implements OnInit {
 
-  constructor(private service: VehicleBodyService){};
+  constructor(private service: VehicleBodyService) {}
 
   ngOnInit() {
     this.service.getVehicleBody()
@@ -24,20 +24,19 @@ export class VehicleBodyComponent {
     });
   }
 
-  addVehicleBody(vehicleBodyForm: NgForm){
+  addVehicleBody(vehicleBodyForm: NgForm) {
     this.service.addVehicleBody(vehicleBodyForm.value)
       .subscribe(response => {
         this.service.getVehicleBody()
-        .subscribe(response => {
-          this.source.load(response.json());
-        });    
+        .subscribe(responseGet => {
+          this.source.load(responseGet.json());
+        });
       });
     vehicleBodyForm.reset();
   }
 
-  //The following section is for the reports section smart table
-  reportInstance : VehicleBodyReportComponent = new VehicleBodyReportComponent(this.service);
-  
+  // The following section is for the reports section smart table
+  reportInstance: VehicleBodyReportComponent = new VehicleBodyReportComponent(this.service);
   source = this.reportInstance.getLocalDataSource();
 
   settings = this.reportInstance.getSettings();
@@ -49,5 +48,4 @@ export class VehicleBodyComponent {
   onAddConfirm(event): void {
     this.reportInstance.onAddConfirm(event);
   }
- 
 }

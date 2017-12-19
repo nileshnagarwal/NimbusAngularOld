@@ -33,7 +33,7 @@ export class TransporterReportComponent implements OnInit {
       transporter: {
         title: 'Transporter',
         type: 'string',
-      },    
+      },
       primary_mobile: {
         title: 'Primary Mobile',
         type: 'number',
@@ -45,12 +45,12 @@ export class TransporterReportComponent implements OnInit {
       primary_person: {
         title: 'Contact Person',
         type: 'string',
-      },      
+      },
     },
     actions: {
       add : false,
       edit: false,
-    }
+    },
   };
 
   source: LocalDataSource = new LocalDataSource();
@@ -63,7 +63,7 @@ export class TransporterReportComponent implements OnInit {
       this.source.load(response.json());
     });
   }
-  
+
   onDeleteConfirm(event): void {
     if (window.confirm('Are you sure you want to delete?')) {
       event.confirm.resolve();
@@ -76,7 +76,7 @@ export class TransporterReportComponent implements OnInit {
   }
 
   // onAddConfirm(event): void {
-  //   //Confirm if the user wants to add the data and 
+  //   //Confirm if the user wants to add the data and
   //   // then call the service to add the data.
   //   if (window.confirm('Are you sure you want to add?')) {
   //     event.confirm.resolve();
@@ -92,12 +92,12 @@ export class TransporterReportComponent implements OnInit {
   //   }
   // }
 
-  getLocalDataSource(){
+  getLocalDataSource() {
     return this.source;
   }
 
-  getSettings(){
+  getSettings() {
     return this.settings;
   }
-  
+
 }

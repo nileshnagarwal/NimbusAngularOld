@@ -5,7 +5,7 @@ import { VehicleBodyService } from './vehicle-body.service';
 describe('VehicleBodyService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [VehicleBodyService]
+      providers: [VehicleBodyService],
     });
   });
 

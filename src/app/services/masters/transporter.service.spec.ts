@@ -5,7 +5,7 @@ import { TransporterService } from './transporter.service';
 describe('TransporterService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [TransporterService]
+      providers: [TransporterService],
     });
   });
 

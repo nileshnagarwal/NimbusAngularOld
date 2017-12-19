@@ -13,8 +13,8 @@ import { VehicleTypeReportComponent } from './../vehicle-type-report/vehicle-typ
   `],
 })
 export class VehicleTypeComponent implements OnInit {
-  
-  constructor(private service: VehicleTypeService){};
+
+  constructor(private service: VehicleTypeService) {}
 
   ngOnInit() {
     this.service.getVehicleType()
@@ -25,43 +25,43 @@ export class VehicleTypeComponent implements OnInit {
 
   vehicleTypeForm = new FormGroup(
     {
-      vehicle: new FormControl('',[
+      vehicle: new FormControl('', [
         Validators.required,
         Validators.maxLength(20),
         Validators.minLength(5),
       ]),
-      length: new FormControl('',[
+      length: new FormControl('', [
         Validators.required,
         Validators.max(300),
       ]),
-      width: new FormControl('',[
+      width: new FormControl('', [
         Validators.required,
         Validators.max(30),
       ]),
-      height: new FormControl('',[
+      height: new FormControl('', [
         Validators.required,
         Validators.max(15),
       ]),
-      weight: new FormControl('',[
+      weight: new FormControl('', [
         Validators.required,
         Validators.max(1000),
       ]),
-    }
-  )
+    },
+  );
 
-  addVehicleType(vehicleTypeForm){
+  addVehicleType(vehicleTypeForm) {
     this.service.addVehicleType(vehicleTypeForm.value)
       .subscribe(response => {
         this.service.getVehicleType()
-        .subscribe(response => {
-          this.source.load(response.json());
+        .subscribe(responseGet => {
+          this.source.load(responseGet.json());
         });
       });
       vehicleTypeForm.reset();
-  };
+  }
 
-  //The following get functions are used to describe 
-  //properties which can be used for cleaner code in html file.
+  // The following get functions are used to describe
+  // properties which can be used for cleaner code in html file.
 
   get vehicle()
   {
@@ -88,9 +88,9 @@ export class VehicleTypeComponent implements OnInit {
     return this.vehicleTypeForm.get('weight');
   }
 
-  //The following section is for the reports section smart table
-  reportInstance : VehicleTypeReportComponent = new VehicleTypeReportComponent(this.service);
-  
+  // The following section is for the reports section smart table
+  reportInstance: VehicleTypeReportComponent = new VehicleTypeReportComponent(this.service);
+
   source = this.reportInstance.getLocalDataSource();
 
   settings = this.reportInstance.getSettings();
@@ -102,5 +102,5 @@ export class VehicleTypeComponent implements OnInit {
   onAddConfirm(event): void {
     this.reportInstance.onAddConfirm(event);
   }
- 
+
 }

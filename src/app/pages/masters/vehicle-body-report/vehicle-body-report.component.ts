@@ -48,7 +48,7 @@ export class VehicleBodyReportComponent implements OnInit {
       this.source.load(response.json());
     });
   }
-  
+
   onDeleteConfirm(event): void {
     if (window.confirm('Are you sure you want to delete?')) {
       event.confirm.resolve();
@@ -61,15 +61,15 @@ export class VehicleBodyReportComponent implements OnInit {
   }
 
   onAddConfirm(event): void {
-    //Confirm if the user wants to add the data and 
+    // Confirm if the user wants to add the data and
     // then call the service to add the data.
     if (window.confirm('Are you sure you want to add?')) {
       event.confirm.resolve();
       this.service.addVehicleBody(event['newData'])
         .subscribe(response => {
           this.service.getVehicleBody()
-          .subscribe(response => {
-            this.source.load(response.json());
+          .subscribe(responseGet => {
+            this.source.load(responseGet.json());
           });
         });
     } else {
@@ -77,12 +77,12 @@ export class VehicleBodyReportComponent implements OnInit {
     }
   }
 
-  getLocalDataSource(){
+  getLocalDataSource() {
     return this.source;
   }
 
-  getSettings(){
+  getSettings() {
     return this.settings;
   }
-  
+
 }
