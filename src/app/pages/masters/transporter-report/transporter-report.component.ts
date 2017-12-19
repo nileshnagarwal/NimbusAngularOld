@@ -47,6 +47,10 @@ export class TransporterReportComponent implements OnInit {
         type: 'string',
       },      
     },
+    actions: {
+      add : false,
+      edit: false,
+    }
   };
 
   source: LocalDataSource = new LocalDataSource();

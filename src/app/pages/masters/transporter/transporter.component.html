@@ -85,26 +85,26 @@
         <!-- Primary Contact Field -->
         <div class="form-group row">
           <label 
-            for="contact" 
+            for="primary_contact" 
             class="col-sm-3 col-form-label">
             Primary Contact Numbers
           </label>
           <div class="col-sm-9">
             <input 
-              formControlName="contact" 
+              formControlName="primary_contact" 
               name="primary_contact"
               class="form-control" 
-              id="contact" 
+              id="primary_contact" 
               placeholder="Primary Contact Numbers">              
           </div>
         </div>        
         <div
-          *ngIf="contact.touched && !contact.valid">
+          *ngIf="primary_contact.touched && !primary_contact.valid">
           <div 
             class="offset-sm-3 col-sm-9 alert alert-danger"
-            *ngIf="contact.errors.maxlength">
-            Primary Contact Numbers should not be greater than {{contact.errors.maxlength.requiredLength}} 
-            characters. Currently it is {{contact.errors.maxlength.actualLength}} characters.
+            *ngIf="primary_contact.errors.maxlength">
+            Primary Contact Numbers should not be greater than {{primary_contact.errors.maxlength.requiredLength}} 
+            characters. Currently it is {{primary_contact.errors.maxlength.actualLength}} characters.
           </div>
         </div>
 
@@ -190,8 +190,9 @@
             </button>
           </div>
         </div>
-
+        
       </form>
+
 
   </nb-card-body>
 </nb-card>

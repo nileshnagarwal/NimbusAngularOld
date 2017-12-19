@@ -34,14 +34,14 @@ export class TransporterComponent implements OnInit {
         Validators.required,
         Validators.max(9999999999),
       ]),
-      contact: new FormControl('',[
-        Validators.max(255),
+      primary_contact: new FormControl('',[
+        Validators.maxLength(255),
       ]),
       primary_person: new FormControl('',[
-        Validators.max(40),
+        Validators.maxLength(40),
       ]),
       other_contact: new FormControl('',[
-        Validators.max(255),
+        Validators.maxLength(255),
       ]),
       address: new FormControl('',[
       ]),
@@ -72,9 +72,9 @@ export class TransporterComponent implements OnInit {
     return this.transporterForm.get('primary_mobile');
   }
 
-  get contact()
+  get primary_contact()
   {
-    return this.transporterForm.get('contact');
+    return this.transporterForm.get('primary_contact');
   }
 
   get primary_person()
@@ -98,8 +98,10 @@ export class TransporterComponent implements OnInit {
     this.reportInstance.onDeleteConfirm(event);
   }
 
-  // onAddConfirm(event): void {
-  //   this.reportInstance.onAddConfirm(event);
-  // }
+
+  //The following function is only for debugging validation errors
+  errorDisplay(transporterForm){
+    console.log(transporterForm);
+  }
  
 }
