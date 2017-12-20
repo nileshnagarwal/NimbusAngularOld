@@ -1,3 +1,4 @@
+import { TransporterComponent } from './../transporter/transporter.component';
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { TransporterService } from './../../../services/masters/transporter.service';
@@ -55,13 +56,23 @@ export class TransporterReportComponent implements OnInit {
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private service: TransporterService) {}
+  constructor(
+    private service: TransporterService, 
+    private transporterComponent: TransporterComponent
+  ) {}
 
   ngOnInit() {
+    this.transporterComponent.refreshTable
+      .subscribe(response => {
+        this.service.getTransporter()
+          .subscribe(response => {
+            this.source.load(response.json());
+          });
+      });
     this.service.getTransporter()
-    .subscribe(response => {
-      this.source.load(response.json());
-    });
+      .subscribe(response => {
+        this.source.load(response.json());
+      });
   }
 
   onDeleteConfirm(event): void {
@@ -75,22 +86,9 @@ export class TransporterReportComponent implements OnInit {
     }
   }
 
-  // onAddConfirm(event): void {
-  //   //Confirm if the user wants to add the data and
-  //   // then call the service to add the data.
-  //   if (window.confirm('Are you sure you want to add?')) {
-  //     event.confirm.resolve();
-  //     this.service.addTransporter(event['newData'])
-  //       .subscribe(response => {
-  //         this.service.getTransporter()
-  //         .subscribe(response => {
-  //           this.source.load(response.json());
-  //         });
-  //       });
-  //   } else {
-  //     event.confirm.reject();
-  //   }
-  // }
+  onView(event) {
+    console.log("It Works");
+  }
 
   getLocalDataSource() {
     return this.source;

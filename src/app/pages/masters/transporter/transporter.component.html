@@ -197,16 +197,4 @@
   </nb-card-body>
 </nb-card>
 
-<nb-card>
-  <nb-card-header>
-    Transporter Report
-  </nb-card-header>
-
-  <nb-card-body>
-    <ng2-smart-table 
-      [settings]="settings" 
-      [source]="source" 
-      (deleteConfirm)="onDeleteConfirm($event)">
-    </ng2-smart-table>
-  </nb-card-body>
-</nb-card>
+<ngx-transporter-report></ngx-transporter-report>

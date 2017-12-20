@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { TransporterReportComponent } from './../transporter-report/transporter-report.component';
 import { TransporterService } from './../../../services/masters/transporter.service';
@@ -12,16 +12,11 @@ import { TransporterService } from './../../../services/masters/transporter.serv
     }
   `],
 })
-export class TransporterComponent implements OnInit {
+export class TransporterComponent {
 
   constructor(private service: TransporterService) {}
 
-  ngOnInit() {
-    this.service.getTransporter()
-    .subscribe(response => {
-      this.source.load(response.json());
-    });
-  }
+  @Output() refreshTable = new EventEmitter();
 
   transporterForm = new FormGroup(
     {
@@ -51,10 +46,7 @@ export class TransporterComponent implements OnInit {
   addTransporter(transporterForm) {
     this.service.addTransporter(transporterForm.value)
       .subscribe(response => {
-        this.service.getTransporter()
-        .subscribe(responseGet => {
-          this.source.load(responseGet.json());
-        });
+        this.refreshTable.emit();        
       });
       transporterForm.reset();
   }
@@ -88,20 +80,24 @@ export class TransporterComponent implements OnInit {
   }
 
   // The following section is for the reports section smart table
-  reportInstance: TransporterReportComponent = new TransporterReportComponent(this.service);
+  // reportInstance: TransporterReportComponent = new TransporterReportComponent(this.service);
 
-  source = this.reportInstance.getLocalDataSource();
+  // source = this.reportInstance.getLocalDataSource();
 
-  settings = this.reportInstance.getSettings();
+  // settings = this.reportInstance.getSettings();
 
-  onDeleteConfirm(event): void {
-    this.reportInstance.onDeleteConfirm(event);
-  }
+  // onDeleteConfirm(event): void {
+  //   this.reportInstance.onDeleteConfirm(event);
+  // }
 
 
-  // The following function is only for debugging validation errors
-  errorDisplay(transporterForm) {
-    console.log(transporterForm);
-  }
+  // // The following function is only for debugging validation errors
+  // errorDisplay(transporterForm) {
+  //   console.log(transporterForm);
+  // }
+
+  // onView(event) {
+  //   console.log(event);
+  // }
 
 }

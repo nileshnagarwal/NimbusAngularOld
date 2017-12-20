@@ -1,10 +1,11 @@
-import { TransporterComponent } from './transporter/transporter.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { MastersComponent } from './masters.component';
 import { VehicleBodyComponent } from './vehicle-body/vehicle-body.component';
 import { VehicleTypeComponent } from './vehicle-type/vehicle-type.component';
+import { TransporterReportComponent } from './transporter-report/transporter-report.component';
+import { TransporterComponent } from './transporter/transporter.component';
 
 const routes: Routes = [{
   path: '',
@@ -42,4 +43,5 @@ export const routedComponents = [
   VehicleBodyComponent,
   VehicleTypeComponent,
   TransporterComponent,
+  TransporterReportComponent,
 ];
