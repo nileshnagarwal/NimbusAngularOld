@@ -1,10 +1,6 @@
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { TransporterReportComponent } from './../transporter-report/transporter-report.component';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 import { TransporterService } from './../../../services/masters/transporter.service';
-import { Response } from '@angular/http/src/static_response';
-import { Transporter } from '../../../interfaces/transporter';
 
 @Component({
   selector: 'ngx-transporter',
@@ -16,18 +12,17 @@ import { Transporter } from '../../../interfaces/transporter';
   `],
 })
 
-export class TransporterViewComponent implements OnInit{
+export class TransporterViewComponent implements OnInit {
 
   constructor(
     private service: TransporterService,
-    private modalService: NgbModal
   ) {}
 
   ngOnInit() {
     this.service.getTransporterById(this.transporterId)
     .subscribe(response => {
-      this.transporterForm.patchValue(response);        
-    })
+      this.transporterForm.patchValue(response);
+    });
   }
 
   transporterId: number;

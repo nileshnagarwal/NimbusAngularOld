@@ -1,6 +1,5 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { TransporterReportComponent } from './../transporter-report/transporter-report.component';
 import { TransporterService } from './../../../services/masters/transporter.service';
 
 @Component({
@@ -46,7 +45,7 @@ export class TransporterComponent {
   addTransporter(transporterForm) {
     this.service.addTransporter(transporterForm.value)
       .subscribe(response => {
-        this.refreshTable.emit();        
+        this.refreshTable.emit();
       });
       transporterForm.reset();
   }

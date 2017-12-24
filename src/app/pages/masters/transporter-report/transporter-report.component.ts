@@ -59,7 +59,7 @@ export class TransporterReportComponent implements OnInit {
   source: LocalDataSource = new LocalDataSource();
 
   constructor(
-    private service: TransporterService, 
+    private service: TransporterService,
     private transporterComponent: TransporterComponent,
     private modalService: NgbModal,
   ) {}
@@ -68,8 +68,8 @@ export class TransporterReportComponent implements OnInit {
     this.transporterComponent.refreshTable
       .subscribe(response => {
         this.service.getTransporter()
-          .subscribe(response => {
-            this.source.load(response.json());
+          .subscribe(responseGet => {
+            this.source.load(responseGet.json());
           });
       });
     this.service.getTransporter()
@@ -92,10 +92,10 @@ export class TransporterReportComponent implements OnInit {
   // This function opens up a modal with the transporter details filled in.
   viewTransporter(event) {
     const activeModal = this.modalService.open(
-      TransporterViewComponent,  
-      { size: 'lg', container: 'nb-layout' }
+      TransporterViewComponent,
+      { size: 'lg', container: 'nb-layout' },
     );
-    activeModal.componentInstance.transporterId = event['data']['transporter_id'];    
+    activeModal.componentInstance.transporterId = event['data']['transporter_id'];
   }
 
   getLocalDataSource() {
