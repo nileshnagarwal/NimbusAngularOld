@@ -1,4 +1,5 @@
 export interface Transporter {
+    transporter_id?: number;
     transporter: string;
     primary_mobile: number;
     primary_contact?: string;

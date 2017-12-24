@@ -4,7 +4,8 @@
   </nb-card-header>
 
   <nb-card-body>
-      <form [formGroup]="transporterForm">
+      <form [formGroup]="transporterForm"
+      (ngSubmit)="editTransporter(transporterForm)">
         
         <!-- Transporter Field -->
         <div class="form-group row">
@@ -22,9 +23,30 @@
               name="transporter"
               class="form-control" 
               id="transporter"
-              readonly>
+              [readonly]="this.readOnly">
           </div>
         </div>
+        <div
+          *ngIf="transporter.touched && !transporter.valid">
+          <div 
+            class="offset-sm-3 col-sm-9 alert alert-danger"
+            *ngIf="transporter.errors.required">
+            Transport Company Name has not been entered.
+          </div>
+          <div 
+            class="offset-sm-3 col-sm-9 alert alert-danger"
+            *ngIf="transporter.errors.maxlength">
+            Transport Company Name should not be greater than {{transporter.errors.maxlength.requiredLength}} 
+            characters. Currently it is {{transporter.errors.maxlength.actualLength}} characters.
+          </div>
+          <div 
+            class="offset-sm-3 col-sm-9 alert alert-danger"
+            *ngIf="transporter.errors.minlength">
+            Transport Company Name should be greater than {{transporter.errors.minlength.requiredLength}} 
+            characters.
+          </div>
+        </div>
+        
         
         <!-- Primary Mobile Field -->
         <div class="form-group row">
@@ -40,10 +62,24 @@
                 name="primary_mobile"
                 type="number"
                 class="form-control"
-                readonly>
+                [readonly]="this.readOnly">
             </div>
         </div>
-  
+        <div
+          *ngIf="primary_mobile.touched && !primary_mobile.valid">
+          <div 
+            class="offset-sm-3 col-sm-9 alert alert-danger"
+            *ngIf="primary_mobile.errors.required">
+            Mobile Number has not been entered.
+          </div>
+          <div 
+            class="offset-sm-3 col-sm-9 alert alert-danger"
+            *ngIf="primary_mobile.errors.max">
+            Mobile Number should not be greater than 10 digits.
+          </div>          
+        </div>
+
+        
         <!-- Primary Contact Field -->
         <div class="form-group row">
           <label 
@@ -57,9 +93,19 @@
               name="primary_contact"
               class="form-control" 
               id="primary_contact"
-              readonly>
+              [readonly]="this.readOnly">
           </div>
-        </div>        
+        </div>
+        <div
+          *ngIf="primary_contact.touched && !primary_contact.valid">
+          <div 
+            class="offset-sm-3 col-sm-9 alert alert-danger"
+            *ngIf="primary_contact.errors.maxlength">
+            Primary Contact Numbers should not be greater than {{primary_contact.errors.maxlength.requiredLength}} 
+            characters. Currently it is {{primary_contact.errors.maxlength.actualLength}} characters.
+          </div>
+        </div>
+        
 
         <!-- Primary Contact Person Field -->
         <div class="form-group row">
@@ -74,9 +120,19 @@
               name="primary_person"
               class="form-control" 
               id="primary_person"
-              readonly>
+              [readonly]="this.readOnly">
           </div>
-        </div>        
+        </div>
+        <div
+          *ngIf="primary_person.touched && !primary_person.valid">
+          <div 
+            class="offset-sm-3 col-sm-9 alert alert-danger"
+            *ngIf="primary_person.errors.maxlength">
+            Contact Person Name should not be greater than {{primary_person.errors.maxlength.requiredLength}} 
+            characters. Currently it is {{primary_person.errors.maxlength.actualLength}} characters.
+          </div>
+        </div>
+
         
         <!-- Other Contact Field -->
         <div class="form-group row">
@@ -91,9 +147,19 @@
               name="other_contact"
               class="form-control" 
               id="other_contact"
-              readonly>
+              [readonly]="this.readOnly">
           </div>
-        </div>        
+        </div>
+        <div
+          *ngIf="other_contact.touched && !other_contact.valid">
+          <div 
+            class="offset-sm-3 col-sm-9 alert alert-danger"
+            *ngIf="other_contact.errors.maxlength">
+            Other Contact Numbers should not be greater than {{other_contact.errors.maxlength.requiredLength}} 
+            characters. Currently it is {{other_contact.errors.maxlength.actualLength}} characters.
+          </div>
+        </div>
+        
         
         <!-- Contact Address Field -->
         <div class="form-group row">
@@ -109,11 +175,30 @@
               name="address"
               class="form-control" 
               id="address"
-              readonly>
+              [readonly]="this.readOnly">
             </textarea>
           </div>
         </div>       
-       
+
+        <!-- Adding the edit and submit button -->
+        <div class="form-group row">
+          <div class="offset-sm-3 col-sm-9">
+            <button 
+              id="edit"
+              type="button"
+              class="btn btn-primary"
+              (click)="onEdit()">
+              {{ this.editButton }}
+            </button>
+            <button 
+              id="submit"
+              type="submit"
+              class="btn btn-primary"
+              [disabled]="!transporterForm.valid">
+              SUBMIT
+            </button>
+          </div>
+        </div>
       </form>
 
 

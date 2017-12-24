@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
+import { Transporter } from '../../interfaces/transporter';
 
 @Injectable()
 export class TransporterService {
@@ -11,8 +12,7 @@ export class TransporterService {
   private header;
   private url = 'http://127.0.0.1:8000/masters/transporter/';
 
-  addTransporter(transporter) {
-    console.log(transporter);
+  addTransporter(transporter: Transporter) {
     return this.http
       .post(
         this.url,
@@ -47,6 +47,17 @@ export class TransporterService {
     return this.http
       .delete(
         this.url + id + '/',
+        { headers: this.header },
+      );
+  }
+
+  editTransporter(
+    transporter: Transporter,
+    id: number) {
+    return this.http
+      .put(
+        this.url + id + '/',
+        JSON.stringify(transporter),
         { headers: this.header },
       );
   }
