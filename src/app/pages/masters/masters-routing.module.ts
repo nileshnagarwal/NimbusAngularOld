@@ -1,3 +1,4 @@
+import { TransporterViewComponent } from './transporter-view/transporter-view.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -44,4 +45,5 @@ export const routedComponents = [
   VehicleTypeComponent,
   TransporterComponent,
   TransporterReportComponent,
+  TransporterViewComponent,
 ];

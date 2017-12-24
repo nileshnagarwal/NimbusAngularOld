@@ -1,55 +1,47 @@
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { TransporterReportComponent } from './../transporter-report/transporter-report.component';
 import { TransporterService } from './../../../services/masters/transporter.service';
+import { Response } from '@angular/http/src/static_response';
+import { Transporter } from '../../../interfaces/transporter';
 
 @Component({
   selector: 'ngx-transporter',
-  templateUrl: './transporter.component.html',
+  templateUrl: './transporter-view.component.html',
   styles: [`
     nb-card {
       transform: translate3d(0, 0, 0);
     }
   `],
 })
-export class TransporterComponent {
 
-  constructor(private service: TransporterService) {}
+export class TransporterViewComponent implements OnInit{
 
-  @Output() refreshTable = new EventEmitter();
+  constructor(
+    private service: TransporterService,
+    private modalService: NgbModal
+  ) {}
 
-  transporterForm = new FormGroup(
+  ngOnInit() {
+    this.service.getTransporterById(this.transporterId)
+    .subscribe(response => {
+      this.transporterForm.patchValue(response);        
+    })
+  }
+
+  transporterId: number;
+
+  transporterForm: FormGroup = new FormGroup(
     {
-      transporter: new FormControl('', [
-        Validators.required,
-        Validators.maxLength(70),
-        Validators.minLength(5),
-      ]),
-      primary_mobile: new FormControl('', [
-        Validators.required,
-        Validators.max(9999999999),
-      ]),
-      primary_contact: new FormControl('', [
-        Validators.maxLength(255),
-      ]),
-      primary_person: new FormControl('', [
-        Validators.maxLength(40),
-      ]),
-      other_contact: new FormControl('', [
-        Validators.maxLength(255),
-      ]),
-      address: new FormControl('', [
-      ]),
+      transporter: new FormControl('', []),
+      primary_mobile: new FormControl('', []),
+      primary_contact: new FormControl('', []),
+      primary_person: new FormControl('', []),
+      other_contact: new FormControl('', []),
+      address: new FormControl('', []),
     },
   );
-
-  addTransporter(transporterForm) {
-    this.service.addTransporter(transporterForm.value)
-      .subscribe(response => {
-        this.refreshTable.emit();        
-      });
-      transporterForm.reset();
-  }
 
   // The following get functions are used to describe
   // properties which can be used for cleaner code in html file.

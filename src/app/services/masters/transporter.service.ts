@@ -29,6 +29,15 @@ export class TransporterService {
       );
   }
 
+  getTransporterById(id) {
+    return this.http
+      .get(
+        this.url + id + '/',
+        { headers: this.header },
+      )
+      .map(response => response.json());
+  }
+
   deleteTransporter(data) {
     // We receive data object which is a part of the event object
     // passed by the event emitter of smart table. This data object

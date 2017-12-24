@@ -1,0 +1,121 @@
+<nb-card>
+  <nb-card-header>
+    {{ transporterForm.controls['transporter'].value }} Details
+  </nb-card-header>
+
+  <nb-card-body>
+      <form [formGroup]="transporterForm">
+        
+        <!-- Transporter Field -->
+        <div class="form-group row">
+          <label 
+            for="transporter" 
+            class="col-sm-3 col-form-label">
+            Transport Company
+          </label>
+          <div class="col-sm-9">
+            <!-- We can use "transporter" in formControlName 
+            instead of using the get function by defining
+            the field as a property in the component class-->
+            <input 
+              formControlName="transporter"
+              name="transporter"
+              class="form-control" 
+              id="transporter"
+              readonly>
+          </div>
+        </div>
+        
+        <!-- Primary Mobile Field -->
+        <div class="form-group row">
+            <label 
+              for="primary_mobile" 
+              class="col-sm-3 col-form-label">
+              Primary Mobile Number
+            </label>
+            <div class="col-sm-9">
+              <input
+                formControlName="primary_mobile"
+                id="primary_mobile" 
+                name="primary_mobile"
+                type="number"
+                class="form-control"
+                readonly>
+            </div>
+        </div>
+  
+        <!-- Primary Contact Field -->
+        <div class="form-group row">
+          <label 
+            for="primary_contact" 
+            class="col-sm-3 col-form-label">
+            Primary Contact Numbers
+          </label>
+          <div class="col-sm-9">
+            <input 
+              formControlName="primary_contact" 
+              name="primary_contact"
+              class="form-control" 
+              id="primary_contact"
+              readonly>
+          </div>
+        </div>        
+
+        <!-- Primary Contact Person Field -->
+        <div class="form-group row">
+          <label 
+            for="primary_person" 
+            class="col-sm-3 col-form-label">
+            Primary Contact Person
+          </label>
+          <div class="col-sm-9">
+            <input 
+              formControlName="primary_person" 
+              name="primary_person"
+              class="form-control" 
+              id="primary_person"
+              readonly>
+          </div>
+        </div>        
+        
+        <!-- Other Contact Field -->
+        <div class="form-group row">
+          <label 
+            for="other_contact" 
+            class="col-sm-3 col-form-label">
+            Other Contact Numbers
+          </label>
+          <div class="col-sm-9">
+            <input 
+              formControlName="other_contact" 
+              name="other_contact"
+              class="form-control" 
+              id="other_contact"
+              readonly>
+          </div>
+        </div>        
+        
+        <!-- Contact Address Field -->
+        <div class="form-group row">
+          <label 
+            for="address" 
+            class="col-sm-3 col-form-label">
+            Contact Address
+          </label>
+          <div class="col-sm-9">
+            <textarea 
+              formControlName="address"
+              rows="3"
+              name="address"
+              class="form-control" 
+              id="address"
+              readonly>
+            </textarea>
+          </div>
+        </div>       
+       
+      </form>
+
+
+  </nb-card-body>
+</nb-card>

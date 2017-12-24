@@ -1,3 +1,5 @@
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TransporterViewComponent } from './../transporter-view/transporter-view.component';
 import { TransporterComponent } from './../transporter/transporter.component';
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
@@ -58,7 +60,8 @@ export class TransporterReportComponent implements OnInit {
 
   constructor(
     private service: TransporterService, 
-    private transporterComponent: TransporterComponent
+    private transporterComponent: TransporterComponent,
+    private modalService: NgbModal,
   ) {}
 
   ngOnInit() {
@@ -86,8 +89,13 @@ export class TransporterReportComponent implements OnInit {
     }
   }
 
-  onView(event) {
-    console.log("It Works");
+  // This function opens up a modal with the transporter details filled in.
+  viewTransporter(event) {
+    const activeModal = this.modalService.open(
+      TransporterViewComponent,  
+      { size: 'lg', container: 'nb-layout' }
+    );
+    activeModal.componentInstance.transporterId = event['data']['transporter_id'];    
   }
 
   getLocalDataSource() {
