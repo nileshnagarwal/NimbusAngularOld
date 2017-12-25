@@ -3,7 +3,7 @@ import { TransporterViewComponent } from './../transporter-view/transporter-view
 import { TransporterComponent } from './../transporter/transporter.component';
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
-import { TransporterService } from './../../../services/masters/transporter.service';
+import { TransporterService } from 'C:/Nilesh/Angular/NimbusAngular/src/app/common/services/masters/transporter.service';
 
 @Component({
   selector: 'ngx-transporter-report',

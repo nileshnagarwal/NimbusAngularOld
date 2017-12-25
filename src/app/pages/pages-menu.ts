@@ -12,6 +12,21 @@ export const MENU_ITEMS: NbMenuItem[] = [
     group: true,
   },
   {
+    title: 'Enquiries & Quotes',
+    icon: 'nb-gear',
+    link: '/pages/enquiries-quotes',
+    children: [
+      {
+        title: 'Enquiries',
+        link: '/pages/enquiries-quotes/enquiries',
+      },
+      {
+        title: 'Quotes',
+        link: '/pages/enquiries-quotes/quotes',
+      },
+    ],
+  },
+  {
     title: 'Masters',
     icon: 'nb-gear',
     link: '/pages/masters',

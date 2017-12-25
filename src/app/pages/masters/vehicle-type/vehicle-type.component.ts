@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { VehicleTypeService } from './../../../services/masters/vehicle-type.service';
+import { VehicleTypeService } from 'C:/Nilesh/Angular/NimbusAngular/src/app/common/services/masters/vehicle-type.service';
 import { VehicleTypeReportComponent } from './../vehicle-type-report/vehicle-type-report.component';
 
 @Component({

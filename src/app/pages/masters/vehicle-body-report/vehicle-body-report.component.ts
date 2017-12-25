@@ -1,4 +1,4 @@
-import { VehicleBodyService } from './../../../services/masters/vehicle-body.service';
+import { VehicleBodyService } from 'C:/Nilesh/Angular/NimbusAngular/src/app/common/services/masters/vehicle-body.service';
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 

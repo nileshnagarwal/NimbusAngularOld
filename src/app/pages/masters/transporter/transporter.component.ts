@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { TransporterService } from './../../../services/masters/transporter.service';
+import { TransporterService } from 'C:/Nilesh/Angular/NimbusAngular/src/app/common/services/masters/transporter.service';
 
 @Component({
   selector: 'ngx-transporter',

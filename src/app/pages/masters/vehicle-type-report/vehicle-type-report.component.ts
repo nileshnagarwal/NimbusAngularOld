@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
-import { VehicleTypeService } from './../../../services/masters/vehicle-type.service';
+import { VehicleTypeService } from 'C:/Nilesh/Angular/NimbusAngular/src/app/common/services/masters/vehicle-type.service';
 
 @Component({
   selector: 'ngx-vehicle-type-report',

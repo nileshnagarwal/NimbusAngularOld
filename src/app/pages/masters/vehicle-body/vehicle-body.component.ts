@@ -1,6 +1,6 @@
 import { VehicleBodyReportComponent } from './../vehicle-body-report/vehicle-body-report.component';
 import { Component } from '@angular/core';
-import { VehicleBodyService } from './../../../services/masters/vehicle-body.service';
+import { VehicleBodyService } from 'C:/Nilesh/Angular/NimbusAngular/src/app/common/services/masters/vehicle-body.service';
 import {NgForm} from '@angular/forms';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
