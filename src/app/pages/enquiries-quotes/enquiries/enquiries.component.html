@@ -1,0 +1,40 @@
+<nb-card>
+  <nb-card-header>
+    Transporter
+  </nb-card-header>
+
+  <nb-card-body>
+    <form
+    [formGroup]="enquiriesForm">
+      
+      <!-- Google Places AutoComplete Box -->
+      <div class="form-group row">
+        <label 
+          for="transporter" 
+          class="col-sm-3 col-form-label">
+          Source
+        </label>
+        <div class="col-sm-9">
+          <ngx-google-places></ngx-google-places>
+        </div>
+      </div>
+
+      <!-- Custom Autocomplete Box -->
+      <div class="form-group row">
+        <label 
+          for="transporter" 
+          class="col-sm-3 col-form-label">
+          Status of Enquiry
+        </label>
+        <div class="col-sm-9">
+          <p-autoComplete 
+            formControlName="status" 
+            [suggestions]="results" 
+            (completeMethod)="search($event)">
+          </p-autoComplete>
+        </div>
+      </div>
+
+    </form>
+  </nb-card-body>       
+</nb-card>

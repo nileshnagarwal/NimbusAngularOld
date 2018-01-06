@@ -1,3 +1,4 @@
+import { GooglePlacesComponent } from './../../common/components/google-places/google-places.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { QuotesComponent } from './quotes/quotes.component';
@@ -30,4 +31,5 @@ export class EnquiriesQuotesRoutingModule { }
 export const routedComponents = [
   EnquiriesComponent,
   QuotesComponent,
+  GooglePlacesComponent,
 ];
