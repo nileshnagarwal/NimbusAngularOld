@@ -1,7 +1,13 @@
+/// <reference path="c:/Nilesh/Angular/NimbusAngular/node_modules/@types/googlemaps/index.d.ts" />
+/// <reference types="node" />
+/// <reference types="@types/googlemaps" />
 import { AgmCoreModule } from '@agm/core';
 import { OnInit, Component, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MapsAPILoader } from '@agm/core';
+import {} from 'googlemaps';
+
+declare var google: any;
 
 @Component({
     selector: 'ngx-google-places',
@@ -25,9 +31,9 @@ import { MapsAPILoader } from '@agm/core';
 
   constructor(
     private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone
+    private ngZone: NgZone,
   ) {}
-
+  
   ngOnInit() {
     //set google maps defaults
     this.zoom = 4;
@@ -36,7 +42,7 @@ import { MapsAPILoader } from '@agm/core';
 
     //create search FormControl
     this.searchControl = new FormControl();
-
+    
     //set current position
     // this.setCurrentPosition();
 
@@ -64,7 +70,7 @@ import { MapsAPILoader } from '@agm/core';
       });
     });
   }
-
+  
   private setCurrentPosition() {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {

@@ -1,5 +1,5 @@
+import { VehicleTypeService } from './../../common/services/masters/vehicle-type.service';
 import { AgmCoreModule } from '@agm/core';
-import { } from 'googlemaps';
 import { NgModule } from '@angular/core';
 import { ThemeModule } from '../../@theme/theme.module';
 import { EnquiriesQuotesRoutingModule, routedComponents } from './enquiries-quotes-routing.module';
@@ -19,6 +19,7 @@ import { AutoCompleteModule } from 'primeng/primeng';
     ...routedComponents,
   ],
   providers: [
+    VehicleTypeService,
   ],  
 })
 export class EnquiriesQuotesModule { }
